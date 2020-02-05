@@ -6,7 +6,9 @@ Implementation of std::vector for learning purposes.
 
 ## About std::vector
 
-[(cppreference.com) vector](https://en.cppreference.com/w/cpp/header/vector)
+## Documentation
+
+[(cppreference.com) std::vector](https://en.cppreference.com/w/cpp/container/vector)
 
 ### Standard
 
