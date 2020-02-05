@@ -1,3 +1,10 @@
+# Build directories
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+
+## Automatically generated
+
 # Prerequisites
 *.d
 
