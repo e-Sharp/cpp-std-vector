@@ -1,10 +1,10 @@
 #pragma once
 
-template<class T, class Allocator = allocator<T>>
+template<class Value, class Allocator = allocator<Value>>
 class vector {
 public:
 	// types
-	using value_type             = T;
+	using value_type             = Value;
 	using allocator_type         = Allocator;
 	using pointer                = typename allocator_traits<Allocator>::pointer;
 	using const_pointer          = typename allocator_traits<Allocator>::const_pointer;
@@ -29,7 +29,7 @@ public:
 	explicit
 	vector(size_type n, const Allocator& = Allocator());
 
-	vector(size_type n, const T& value, const Allocator& = Allocator());
+	vector(size_type n, const Value& value, const Allocator& = Allocator());
 
 	template<class InputIterator>
 	vector(
@@ -46,7 +46,7 @@ public:
 
 	vector(vector&&, const Allocator&);
 
-	vector(initializer_list<T>, const Allocator& = Allocator());
+	vector(initializer_list<Value>, const Allocator& = Allocator());
 
 	~vector();
 
@@ -58,14 +58,14 @@ public:
 		allocator_traits<Allocator>::is_always_equal::value
 	);
 
-	vector& operator=(initializer_list<T>);
+	vector& operator=(initializer_list<Value>);
 
 	template<class InputIterator>
 	void assign(InputIterator first, InputIterator last);
 
-	void assign(size_type n, const T& u);
+	void assign(size_type n, const Value& u);
 
-	void assign(initializer_list<T>);
+	void assign(initializer_list<Value>);
 
 	allocator_type get_allocator() const noexcept;
 
@@ -108,7 +108,7 @@ public:
 
 	void resize(size_type sz);
 
-	void resize(size_type sz, const T& c);
+	void resize(size_type sz, const Value& c);
 
 	void reserve(size_type n);
 
@@ -134,26 +134,28 @@ public:
 
 	// [vector.data], data access
 
-	T* data() noexcept;
+	Value* data() noexcept;
 
-	const T* data() const noexcept;
+	const Value* data() const noexcept;
 
 	// [vector.modifiers], modifiers
 
 	template<class... Args> reference emplace_back(Args&&... args);
 
-	void push_back(const T& x);
+	void push_back(const Value& x);
 
-	void push_back(T&& x);
+	void push_back(Value&& x);
 
 	void pop_back();
 
-	template<class... Args> iterator emplace(const_iterator position, Args&&... args);
-	iterator insert(const_iterator position, const T& x);
+	template<class... Args>
+	iterator emplace(const_iterator position, Args&&... args);
 
-	iterator insert(const_iterator position, T&& x);
+	iterator insert(const_iterator position, const Value& x);
 
-	iterator insert(const_iterator position, size_type n, const T& x);
+	iterator insert(const_iterator position, Value&& x);
+
+	iterator insert(const_iterator position, size_type n, const Value& x);
 
 	template<class InputIterator>
 	iterator insert(
@@ -162,7 +164,7 @@ public:
 		InputIterator last
 	);
 
-	iterator insert(const_iterator position, initializer_list<T> il);
+	iterator insert(const_iterator position, initializer_list<Value> il);
 
 	iterator erase(const_iterator position);
 
@@ -183,6 +185,6 @@ vector(InputIterator, InputIterator, Allocator = Allocator())
 
 // swap
 
-template<class T, class Allocator>
-void swap(vector<T, Allocator>& x, vector<T, Allocator>& y)
+template<class Value, class Allocator>
+void swap(vector<Value, Allocator>& x, vector<Value, Allocator>& y)
 noexcept(noexcept(x.swap(y)));
