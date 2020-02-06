@@ -3,6 +3,7 @@
 template<class Value, class Allocator = allocator<Value>>
 class vector {
 public:
+
 	// types
 	using value_type             = Value;
 	using allocator_type         = Allocator;
@@ -50,133 +51,134 @@ public:
 
 	~vector();
 
-	vector& operator=(const vector& x);
+	auto operator=(const vector& x) -> vector&;
 
-	vector& operator=(vector&& x)
+	auto operator=(vector&& x) -> vector&
 	noexcept(
 		allocator_traits<Allocator>::propagate_on_container_move_assignment::value ||
 		allocator_traits<Allocator>::is_always_equal::value
 	);
 
-	vector& operator=(initializer_list<Value>);
+	auto operator=(initializer_list<Value>) -> vector&;
 
 	template<class InputIterator>
-	void assign(InputIterator first, InputIterator last);
+	auto assign(InputIterator first, InputIterator last) -> void;
 
-	void assign(size_type n, const Value& u);
+	auto assign(size_type n, const Value& u) -> void;
 
-	void assign(initializer_list<Value>);
+	auto assign(initializer_list<Value>) -> void;
 
-	allocator_type get_allocator() const noexcept;
+	auto get_allocator() const noexcept -> allocator_type;
 
 	// iterators
 
-	iterator begin() noexcept;
+	auto begin() noexcept -> iterator;
 
-	const_iterator begin() const noexcept;
+	auto begin() const noexcept -> const_iterator;
 
-	iterator end() noexcept;
+	auto end() noexcept -> iterator;
 
-	const_iterator end() const noexcept;
+	auto end() const noexcept -> const_iterator;
 
-	reverse_iterator rbegin() noexcept;
+	auto rbegin() noexcept -> reverse_iterator;
 
-	const_reverse_iterator rbegin() const noexcept;
+	auto rbegin() const noexcept -> const_reverse_iterator;
 
-	reverse_iterator rend() noexcept;
+	auto rend() noexcept -> reverse_iterator;
 
-	const_reverse_iterator rend() const noexcept;
+	auto rend() const noexcept -> const_reverse_iterator;
 
-	const_iterator cbegin() const noexcept;
+	auto cbegin() const noexcept -> const_iterator;
 
-	const_iterator cend() const noexcept;
+	auto cend() const noexcept -> const_iterator;
 
-	const_reverse_iterator crbegin() const noexcept;
+	auto crbegin() const noexcept -> const_reverse_iterator;
 
-	const_reverse_iterator crend() const noexcept;
+	auto crend() const noexcept -> const_reverse_iterator;
 
 	// [vector.capacity], capacity
 
 	[[nodiscard]]
-	bool empty() const noexcept;
+	auto empty() const noexcept -> bool;
 
-	size_type size() const noexcept;
+	auto size() const noexcept -> size_type;
 
-	size_type max_size() const noexcept;
+	auto max_size() const noexcept -> size_type;
 
-	size_type capacity() const noexcept;
+	auto capacity() const noexcept -> size_type;
 
-	void resize(size_type sz);
+	auto resize(size_type sz) -> void;
 
-	void resize(size_type sz, const Value& c);
+	auto resize(size_type sz, const Value& c) -> void;
 
-	void reserve(size_type n);
+	auto reserve(size_type n) -> void;
 
-	void shrink_to_fit();
+	auto shrink_to_fit() -> void;
 
 	// element access
 
-	reference operator[](size_type n);
+	auto operator[](size_type n) -> reference;
 
-	const_reference operator[](size_type n) const;
+	auto operator[](size_type n) const -> const_reference;
 
-	const_reference at(size_type n) const;
+	auto at(size_type n) const -> const_reference;
 
-	reference at(size_type n);
+	auto at(size_type n) -> reference;
 
-	reference front();
+	auto front() -> reference;
 
-	const_reference front() const;
+	auto front() const -> const_reference;
 
-	reference back();
+	auto back() -> reference;
 
-	const_reference back() const;
+	auto back() const -> const_reference;
 
 	// [vector.data], data access
 
-	Value* data() noexcept;
+	auto data() noexcept -> Value*;
 
-	const Value* data() const noexcept;
+	auto data() const noexcept -> const Value*;
 
 	// [vector.modifiers], modifiers
 
-	template<class... Args> reference emplace_back(Args&&... args);
+	template<class... Args>
+	auto emplace_back(Args&&... args) -> reference;
 
-	void push_back(const Value& x);
+	auto push_back(const Value& x) -> void;
 
-	void push_back(Value&& x);
+	auto push_back(Value&& x) -> void;
 
-	void pop_back();
+	auto pop_back() -> void;
 
 	template<class... Args>
-	iterator emplace(const_iterator position, Args&&... args);
+	auto emplace(const_iterator position, Args&&... args) -> iterator;
 
-	iterator insert(const_iterator position, const Value& x);
+	auto insert(const_iterator position, const Value& x) -> iterator;
 
-	iterator insert(const_iterator position, Value&& x);
+	auto insert(const_iterator position, Value&& x) -> iterator;
 
-	iterator insert(const_iterator position, size_type n, const Value& x);
+	auto insert(const_iterator position, size_type n, const Value& x) -> iterator;
 
 	template<class InputIterator>
-	iterator insert(
+	auto insert(
 		const_iterator position,
 		InputIterator first,
 		InputIterator last
-	);
+	) -> iterator;
 
-	iterator insert(const_iterator position, initializer_list<Value> il);
+	auto insert(const_iterator position, initializer_list<Value> il) -> iterator;
 
-	iterator erase(const_iterator position);
+	auto erase(const_iterator position) -> iterator;
 
-	iterator erase(const_iterator first, const_iterator last);
+	auto erase(const_iterator first, const_iterator last) -> iterator;
 
-	void swap(vector&)
+	auto swap(vector&)
 	noexcept(
 		allocator_traits<Allocator>::propagate_on_container_swap::value ||
 		allocator_traits<Allocator>::is_always_equal::value
-	);
+	) -> void;
 
-	void clear() noexcept;
+	auto clear() noexcept -> void;
 };
 
 template<class InputIterator, class Allocator = allocator<iter-value-type<InputIterator>>>
