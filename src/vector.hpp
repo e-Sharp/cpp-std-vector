@@ -55,11 +55,10 @@ public:
 
 	auto operator=(const vector& x) -> vector&;
 
-	auto operator=(vector&& x) -> vector&
-	noexcept(
+	auto operator=(vector&& x) noexcept(
 		allocator_traits<Allocator>::propagate_on_container_move_assignment::value ||
 		allocator_traits<Allocator>::is_always_equal::value
-	);
+	)  -> vector&;
 
 	auto operator=(std::initializer_list<Value>) -> vector&;
 
