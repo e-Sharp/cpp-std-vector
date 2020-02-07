@@ -7,17 +7,17 @@ class vector {
 public:
 
 	// types
-	using value_type             = Value;
-	using allocator_type         = Allocator;
-	using pointer                = typename std::allocator_traits<Allocator>::pointer;
-	using const_pointer          = typename std::allocator_traits<Allocator>::const_pointer;
-	using reference              = value_type&;
-	using const_reference        = const value_type&;
-	using size_type              = typename std::allocator_traits<Allocator>::size_type;
-	using difference_type        = typename std::allocator_traits<Allocator>::difference_type;
-	using iterator               = Value*;
-	using const_iterator         = const Value*;
-	using reverse_iterator       = std::reverse_iterator<iterator>;
+	using value_type = Value;
+	using allocator_type = Allocator;
+	using pointer = typename std::allocator_traits<Allocator>::pointer;
+	using const_pointer = typename std::allocator_traits<Allocator>::const_pointer;
+	using reference = value_type&;
+	using const_reference = const value_type&;
+	using size_type = typename std::allocator_traits<Allocator>::size_type;
+	using difference_type = typename std::allocator_traits<Allocator>::difference_type;
+	using iterator = Value*;
+	using const_iterator = const Value*;
+	using reverse_iterator = std::reverse_iterator<iterator>;
 	using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
 	// [vector.cons], construct/copy/destroy
