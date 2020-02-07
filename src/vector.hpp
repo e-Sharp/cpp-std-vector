@@ -185,19 +185,34 @@ public:
 		return operator[](index);
 	}
 
-	auto front() -> reference;
+	auto front() -> reference {
+		return *begin();
+	}
 
-	auto front() const -> const_reference;
+	auto front() const -> const_reference {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->front();
+	}
 
-	auto back() -> reference;
+	auto back() -> reference {
+		return *(end() - 1);
+	}
 
-	auto back() const -> const_reference;
+	auto back() const -> const_reference {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->back();
+	}
 
 	// [vector.data], data access
 
-	auto data() noexcept -> Value*;
+	auto data() noexcept -> Value* {
+		return data_;
+	}
 
-	auto data() const noexcept -> const Value*;
+	auto data() const noexcept -> const Value* {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->data();
+	}
 
 	// [vector.modifiers], modifiers
 
