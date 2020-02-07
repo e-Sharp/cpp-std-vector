@@ -49,7 +49,7 @@ public:
 
 	vector(vector&&, const Allocator&);
 
-	vector(initializer_list<Value>, const Allocator& = Allocator());
+	vector(std::initializer_list<Value>, const Allocator& = Allocator());
 
 	~vector();
 
@@ -61,14 +61,14 @@ public:
 		allocator_traits<Allocator>::is_always_equal::value
 	);
 
-	auto operator=(initializer_list<Value>) -> vector&;
+	auto operator=(std::initializer_list<Value>) -> vector&;
 
 	template<class InputIterator>
 	auto assign(InputIterator first, InputIterator last) -> void;
 
 	auto assign(size_type n, const Value& u) -> void;
 
-	auto assign(initializer_list<Value>) -> void;
+	auto assign(std::initializer_list<Value>) -> void;
 
 	auto get_allocator() const noexcept -> allocator_type;
 
@@ -168,7 +168,7 @@ public:
 		InputIterator last
 	) -> iterator;
 
-	auto insert(const_iterator position, initializer_list<Value> il) -> iterator;
+	auto insert(const_iterator position, std::initializer_list<Value> il) -> iterator;
 
 	auto erase(const_iterator position) -> iterator;
 
