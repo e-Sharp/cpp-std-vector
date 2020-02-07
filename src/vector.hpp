@@ -7,6 +7,7 @@ class vector {
 public:
 
 	// types
+
 	using value_type = Value;
 	using allocator_type = Allocator;
 	using pointer = typename std::allocator_traits<Allocator>::pointer;
@@ -27,7 +28,8 @@ public:
 	{}
 
 	explicit
-	vector(const Allocator&) noexcept;
+	vector(const Allocator&) noexcept
+	{}
 
 	explicit
 	vector(size_type n, const Allocator& = Allocator());
@@ -51,7 +53,8 @@ public:
 
 	vector(std::initializer_list<Value>, const Allocator& = Allocator());
 
-	~vector();
+	~vector()
+	{}
 
 	auto operator=(const vector& x) -> vector&;
 
@@ -180,6 +183,11 @@ public:
 	) -> void;
 
 	auto clear() noexcept -> void;
+
+private:
+
+
+
 };
 
 // template<class InputIterator, class Allocator = allocator<iter-value-type<InputIterator>>>
