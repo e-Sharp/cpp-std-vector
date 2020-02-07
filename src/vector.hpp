@@ -186,8 +186,10 @@ public:
 
 private:
 
+	unsigned capacity_;
+	unsigned size_;
 
-
+	Value* data_;
 };
 
 // template<class InputIterator, class Allocator = allocator<iter-value-type<InputIterator>>>
