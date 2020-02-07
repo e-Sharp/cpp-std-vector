@@ -1,14 +1,16 @@
 #pragma once
 
-template<class Value, class Allocator = allocator<Value>>
+#include<memory>
+
+template<class Value, class Allocator = std::allocator<Value>>
 class vector {
 public:
 
 	// types
 	using value_type             = Value;
 	using allocator_type         = Allocator;
-	using pointer                = typename allocator_traits<Allocator>::pointer;
-	using const_pointer          = typename allocator_traits<Allocator>::const_pointer;
+	using pointer                = typename std::allocator_traits<Allocator>::pointer;
+	using const_pointer          = typename std::allocator_traits<Allocator>::const_pointer;
 	using reference              = value_type&;
 	using const_reference        = const value_type&;
 	using size_type              = implementation-defined; // see [container.requirements]
