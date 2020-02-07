@@ -76,29 +76,57 @@ public:
 
 	// iterators
 
-	auto begin() noexcept -> iterator;
+	auto begin() noexcept -> iterator {
+		return data();
+	}
 
-	auto begin() const noexcept -> const_iterator;
+	auto begin() const noexcept -> const_iterator {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->begin();
+	}
 
-	auto end() noexcept -> iterator;
+	auto end() noexcept -> iterator {
+		return data() + size();
+	}
 
-	auto end() const noexcept -> const_iterator;
+	auto end() const noexcept -> const_iterator {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->end();
+	}
 
-	auto rbegin() noexcept -> reverse_iterator;
+	auto rbegin() noexcept -> reverse_iterator {
+		return data() + size() - 1;
+	}
 
-	auto rbegin() const noexcept -> const_reverse_iterator;
+	auto rbegin() const noexcept -> const_reverse_iterator {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->rbegin();
+	}
 
-	auto rend() noexcept -> reverse_iterator;
+	auto rend() noexcept -> reverse_iterator {
+		return data() - 1;
+	}
 
-	auto rend() const noexcept -> const_reverse_iterator;
+	auto rend() const noexcept -> const_reverse_iterator {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->rend();
+	}
 
-	auto cbegin() const noexcept -> const_iterator;
+	auto cbegin() const noexcept -> const_iterator {
+		return begin();
+	}
 
-	auto cend() const noexcept -> const_iterator;
+	auto cend() const noexcept -> const_iterator {
+		return end();
+	}
 
-	auto crbegin() const noexcept -> const_reverse_iterator;
+	auto crbegin() const noexcept -> const_reverse_iterator {
+		return rbegin();
+	}
 
-	auto crend() const noexcept -> const_reverse_iterator;
+	auto crend() const noexcept -> const_reverse_iterator {
+		return rend();
+	}
 
 	// [vector.capacity], capacity
 
