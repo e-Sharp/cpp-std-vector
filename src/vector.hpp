@@ -231,6 +231,7 @@ private:
 	unsigned capacity_;
 	unsigned size_;
 
+	Allocator allocator_;
 	Value* data_;
 };
 
