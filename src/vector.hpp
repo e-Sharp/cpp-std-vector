@@ -1,6 +1,7 @@
 #pragma once
 
 #include<memory>
+#include<stdexcept>
 
 template<class Value, class Allocator = std::allocator<Value>>
 class vector {
@@ -147,7 +148,9 @@ public:
 		return capacity_;
 	}
 
-	auto resize(size_type sz) -> void;
+	auto resize(size_type sz) -> void {
+
+	}
 
 	auto resize(size_type sz, const Value& c) -> void;
 
