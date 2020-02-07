@@ -182,9 +182,9 @@ public:
 	auto clear() noexcept -> void;
 };
 
-template<class InputIterator, class Allocator = allocator<iter-value-type<InputIterator>>>
-vector(InputIterator, InputIterator, Allocator = Allocator())
--> vector<iter-value-type<InputIterator>, Allocator>;
+// template<class InputIterator, class Allocator = allocator<iter-value-type<InputIterator>>>
+// vector(InputIterator, InputIterator, Allocator = Allocator())
+// -> vector<iter-value-type<InputIterator>, Allocator>;
 
 // swap
 
