@@ -165,13 +165,25 @@ public:
 
 	// element access
 
-	auto operator[](size_type n) -> reference;
+	auto operator[](size_type index) -> reference {
+		return *(begin() + index);
+	}
 
-	auto operator[](size_type n) const -> const_reference;
+	auto operator[](size_type index) const -> const_reference {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->operator[](index);
+	}
 
-	auto at(size_type n) const -> const_reference;
+	auto at(size_type index) const -> const_reference {
+		auto mutable_this = const_cast<vector*>(this);
+		return mutable_this->at(index);
+	}
 
-	auto at(size_type n) -> reference;
+	auto at(size_type index) -> reference {
+		if(index >= size())
+			throw std::out_of_range("vector::at : index > size()");
+		return operator[](index);
+	}
 
 	auto front() -> reference;
 
