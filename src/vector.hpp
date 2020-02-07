@@ -73,7 +73,9 @@ public:
 
 	auto assign(std::initializer_list<Value>) -> void;
 
-	auto get_allocator() const noexcept -> allocator_type;
+	auto get_allocator() const noexcept -> allocator_type {
+		return allocator_;
+	}
 
 	// iterators
 
