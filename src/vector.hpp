@@ -154,7 +154,10 @@ public:
 
 	auto resize(size_type sz, const Value& c) -> void;
 
-	auto reserve(size_type n) -> void;
+	auto reserve(size_type new_capacity) -> void {
+		if(new_capacity > max_size())
+			throw std::length_error{"vector::reserve : new_capacity > max_size()"};
+	}
 
 	auto shrink_to_fit() -> void;
 
