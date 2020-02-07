@@ -103,13 +103,21 @@ public:
 	// [vector.capacity], capacity
 
 	[[nodiscard]]
-	auto empty() const noexcept -> bool;
+	auto empty() const noexcept -> bool {
+		return size_ == 0;
+	}
 
-	auto size() const noexcept -> size_type;
+	auto size() const noexcept -> size_type {
+		return size_;
+	}
 
-	auto max_size() const noexcept -> size_type;
+	auto max_size() const noexcept -> size_type {
+		return std::allocator_traits<Allocator>::max_size();
+	}
 
-	auto capacity() const noexcept -> size_type;
+	auto capacity() const noexcept -> size_type {
+		return capacity_;
+	}
 
 	auto resize(size_type sz) -> void;
 
