@@ -13,10 +13,10 @@ public:
 	using const_pointer          = typename std::allocator_traits<Allocator>::const_pointer;
 	using reference              = value_type&;
 	using const_reference        = const value_type&;
-	using size_type              = implementation-defined; // see [container.requirements]
-	using difference_type        = implementation-defined; // see [container.requirements]
-	using iterator               = implementation-defined; // see [container.requirements]
-	using const_iterator         = implementation-defined; // see [container.requirements]
+	using size_type              = typename std::allocator_traits<Allocator>::size_type;
+	using difference_type        = typename std::allocator_traits<Allocator>::difference_type;
+	using iterator               = Value*;
+	using const_iterator         = const Value*;
 	using reverse_iterator       = std::reverse_iterator<iterator>;
 	using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
