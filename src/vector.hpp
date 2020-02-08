@@ -155,8 +155,30 @@ public:
 		return capacity_;
 	}
 
-	auto resize(size_type sz) -> void {
+	auto resize(size_type new_size) -> void {
+		if(new_size < size()) {
+			for(auto i = new_size; i < size(); ++i)
+				std::allocator_traits<Allocator>::destroy(allocator_, begin() + i);
+		}
+		else {
+			if(new_size > capacity())
+				reserve(new_size);
+			for(auto i = size(); i < new_size; ++i)
+				std::allocator_traits<Allocator>::construct(allocator_, begin() + i);
+		}
+	}
 
+	auto resize(size_type sz, const Value& to_copy) -> void {
+		if(new_size < size()) {
+			for(auto i = new_size; i < size(); ++i)
+				std::allocator_traits<Allocator>::destroy(allocator_, begin() + i);
+		}
+		else {
+			if(new_size > capacity())
+				reserve(new_size);
+			for(auto i = size(); i < new_size; ++i)
+				std::allocator_traits<Allocator>::construct(allocator_, begin() + i, to_copy);
+		}
 	}
 
 	auto resize(size_type sz, const Value& c) -> void;
