@@ -219,11 +219,18 @@ public:
 	template<class... Args>
 	auto emplace_back(Args&&... args) -> reference;
 
-	auto push_back(const Value& x) -> void;
+	auto push_back(const Value& x) -> void {
+		
+	}
 
-	auto push_back(Value&& x) -> void;
+	auto push_back(Value&& x) -> void {
 
-	auto pop_back() -> void;
+	}
+
+	auto pop_back() -> void {
+		size -= 1;
+		std::allocator_traits<Allocator>::destroy(allocator_, end());
+	}
 
 	template<class... Args>
 	auto emplace(const_iterator position, Args&&... args) -> iterator;
