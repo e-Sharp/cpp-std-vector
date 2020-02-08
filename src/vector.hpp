@@ -181,11 +181,17 @@ public:
 		}
 	}
 
-	auto resize(size_type sz, const Value& c) -> void;
-
 	auto reserve(size_type new_capacity) -> void {
 		if(new_capacity > max_size())
 			throw std::length_error{"vector::reserve : new_capacity > max_size()"};
+		if(new_capacity > capacity()) {
+			auto new_data = std::allocator_traits<Allocator>::allocate(allocator_, new_capacity);
+			for(auto i = size_type{0}; i < size(); ++i) {
+				std::allocator_traits<Allocator>::construct(allocator_, new_data + i, std::move(operator[](i)));
+			}
+			
+			capacity_ = new_capacity;
+		}
 	}
 
 	auto shrink_to_fit() -> void;
