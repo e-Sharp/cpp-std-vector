@@ -148,7 +148,7 @@ public:
 	}
 
 	auto max_size() const noexcept -> size_type {
-		return std::allocator_traits<Allocator>::max_size();
+		return std::allocator_traits<Allocator>::max_size(allocator_);
 	}
 
 	auto capacity() const noexcept -> size_type {
