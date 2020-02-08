@@ -252,12 +252,18 @@ public:
 	template<class... Args>
 	auto emplace_back(Args&&... args) -> reference;
 
-	auto push_back(const Value& x) -> void {
-		
+	auto push_back(const Value& to_push) -> void {
+		if(size() + 1 >= capacity())
+			reserve(2 * capacity() + 1);
+		std::allocator_traits<Allocator>::construct(allocator_, end(), to_push);
+		size += 1;
 	}
 
 	auto push_back(Value&& x) -> void {
-
+		if(size() + 1 >= capacity())
+			reserve(2 * capacity() + 1);
+		std::allocator_traits<Allocator>::construct(allocator_, end(), std::move(to_push));
+		size += 1;
 	}
 
 	auto pop_back() -> void {
