@@ -29,7 +29,12 @@ public:
 	{}
 
 	explicit
-	vector(const Allocator&) noexcept
+	vector(const Allocator& allocator) noexcept
+		: capacity_{0}
+		, size_{0}
+
+		, allocator_{allocator}
+		, data_{nullptr}
 	{}
 
 	explicit
