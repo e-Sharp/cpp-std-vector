@@ -59,8 +59,11 @@ public:
 
 	vector(std::initializer_list<Value>, const Allocator& = Allocator());
 
-	~vector()
-	{}
+	~vector() {
+		for(auto it = begin(); it != end(); ++it)
+			std::allocator_traits<Allocator>::destroy(allocator_, it);
+		std::allocator_traits<Allocator>::deallocate(allocator_, data(), capacity());
+	}
 
 	auto operator=(const vector& x) -> vector&;
 
