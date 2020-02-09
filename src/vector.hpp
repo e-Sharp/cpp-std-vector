@@ -48,7 +48,19 @@ public:
 		resize(with_size);
 	}
 
-	vector(size_type n, const Value& value, const Allocator& = Allocator());
+	vector(
+		size_type with_size,
+		const Value& with_value,
+		const Allocator& with_allocator = Allocator()
+	)
+		: capacity_{0}
+		, size_{0}
+
+		, allocator_{with_allocator};
+		, data_{nullptr}
+	{
+		resize(with_size, with_value);
+	}
 
 	template<class InputIterator>
 	vector(
