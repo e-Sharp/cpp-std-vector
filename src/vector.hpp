@@ -71,7 +71,17 @@ public:
 
 	vector(const vector& x);
 
-	vector(vector&&) noexcept;
+	vector(vector&& from_vector) noexcept
+		: capacity_{from_vector.capacity()}
+		, size_{from_vector.size()}
+
+		, allocator{from_vector.get_allocator()}
+		, data_{from_vector.data()}
+	{
+		from_vector.capacity_ = 0;
+		from_vector.data_ = nullptr;
+		from_vector.size_ = 0;
+	}
 
 	vector(const vector&, const Allocator&);
 
