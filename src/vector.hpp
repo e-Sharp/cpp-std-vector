@@ -56,7 +56,7 @@ public:
 		: capacity_{0}
 		, size_{0}
 
-		, allocator_{with_allocator};
+		, allocator_{with_allocator}
 		, data_{nullptr}
 	{
 		resize(with_size, with_value);
