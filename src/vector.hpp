@@ -326,11 +326,15 @@ public:
 
 	auto erase(const_iterator first, const_iterator last) -> iterator;
 
-	auto swap(vector&)
+	auto swap(vector& to_swap)
 	noexcept(
 		allocator_traits<Allocator>::propagate_on_container_swap::value ||
 		allocator_traits<Allocator>::is_always_equal::value
-	) -> void;
+	) -> void {
+		std::swap(capacity_, to_swap.capacity_);
+		std::swap(size_, to_swap.size_);
+		std::swap(allocator_, to_swap.allocator_);
+	}
 
 	auto clear() noexcept -> void;
 
