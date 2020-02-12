@@ -217,13 +217,18 @@ public:
 	auto reserve(size_type new_capacity) -> void {
 		if(new_capacity > max_size())
 			throw std::length_error{"vector::reserve : new_capacity > max_size()"};
-		if(new_capacity > capacity()) {
-			auto new_data = std::allocator_traits<Allocator>::allocate(allocator_, new_capacity);
-			for(auto i = size_type{0}; i < size(); ++i) {
-				std::allocator_traits<Allocator>::construct(allocator_, new_data + i, std::move(operator[](i)));
-			}
 			
+		if(new_capacity > capacity()) {
+			auto previous_data = data();
+			data_ = std::allocator_traits<Allocator>::allocate(allocator_, new_capacity);
+
+			auto previous_capacity = capacity();
 			capacity_ = new_capacity;
+
+			for(auto i = size_type{0}; i < size(); ++i)
+				std::allocator_traits<Allocator>::construct(allocator_, begin() + i, std::move(*(previous_data + i)));
+
+			std::allocator_traits<Allocator>::deallocate(allocator_, previous_data, previous_capacity);
 		}
 	}
 
